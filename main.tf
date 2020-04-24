@@ -56,7 +56,7 @@ resource "aws_iam_role_policy" "s3_read" {
                 "s3:Get*",
                 "s3:List*"
             ],
-            "Resource": "*"
+            "Resource": "arn:aws:s3:::annas-twink-s3/*"
         }
     ]
 }

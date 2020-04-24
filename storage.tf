@@ -25,4 +25,5 @@ resource "aws_s3_bucket_object" "html" {
   bucket = aws_s3_bucket.html.id
   source = "index.html"
   acl    = "private"
+  etag   = filemd5("index.html")
 }
