@@ -60,12 +60,12 @@ resource "aws_iam_role_policy" "s3_read" {
         {
             "Effect": "Allow",
             "Action": [
-                "s3:Get*",
-                "s3:List*"
+                "s3:GetObject"
             ],
-            "Resource": "arn:aws:s3:::annas-twink-s3/*"
+            "Resource": "${aws_s3_bucket.html.arn}/${aws_s3_bucket_object.html.key}"
         }
     ]
 }
 EOF
+
 }
