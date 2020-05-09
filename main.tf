@@ -10,6 +10,7 @@ resource "aws_instance" "amazon_linux" {
   key_name               = aws_key_pair.annas.key_name
 
   user_data = file("cloud-config/get_script.sh")
+  #user_data = file("cloud-config/get_script.yml")
 
   tags = {
     Name = "web-server"

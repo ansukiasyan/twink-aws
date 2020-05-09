@@ -1,0 +1,28 @@
+#cloud-config
+
+bootcmd:
+  - amazon-linux-extras install epel -y
+#  - yum -y install epel-release
+
+package_update: true
+
+packages:
+  - mc
+  - httpd
+  - htop
+  - iftop
+  - nmon
+
+runcmd:
+  - systemctl stop postfix
+  - systemctl disable postfix
+  - systemctl stop rpcbind
+  - systemctl disable rpcbind
+  - systemctl mask rpcbind
+  - systemctl stop rpcbind.socket
+  - systemctl disable rpcbind.socket
+  
+  - rm -f /var/www/html/index.html
+  - aws s3 cp s3://annas-twink-s3/index.html /var/www/html
+  - systemctl start httpd
+  - systemctl enable httpd
